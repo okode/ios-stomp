@@ -17,18 +17,27 @@
 package com.okode.stomp.server
 
 import org.fusesource.stomp.scomp.StompClient
-import org.apache.activemq.apollo.stomp.StompFrame
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
 
+import com.typesafe.scalalogging.Logger
+
+import javax.annotation.PostConstruct
+
+@Component
 class Server {
 
-  def main(args: Array[String]) {
+  private val logger = Logger(LoggerFactory.getLogger(classOf[Server]))
+  
+  @PostConstruct
+  def init() {
     val client = new StompClient
     client.connect("localhost", 61613, "admin", "password")
     0 to 100000 foreach((i:Int) => {
-      val message = "Hello: " + i
-      println(message)
+      val message = s"Hello: $i"
+      logger.info(message)
       client.send(destination = "/topic/demo", text = message)
-      Thread sleep 10
+      Thread.sleep(10)
     })
     client.disconnect()
   }
