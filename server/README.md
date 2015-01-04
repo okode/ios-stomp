@@ -14,7 +14,7 @@ Building with Gradle
 Running with Gradle
 -------------------
 
-    $ ./gradlew run
+    $ ./gradlew bootRun
 
 Importing project in Eclipse
 ----------------------------
