@@ -1,16 +1,46 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+    }
+}
+
 apply plugin: "scala"
 apply plugin: "eclipse"
+apply plugin: "spring-boot"
 
 repositories {
     jcenter()
+    mavenCentral()
 }
+
+sourceCompatibility = "1.8"
+version = "1.0-SNAPSHOT"
+
+ext.scala_version         = "2.11.4"
+ext.scala_logging_version = "3.1.0"
+ext.logback_version       = "1.1.2"
+ext.spring_boot_version   = "1.2.0.RELEASE"
+ext.scomp_version         = "1.1.0"
+
+ext.deps = [
+    scala:                     "org.scala-lang:scala-library:$scala_version",
+    scala_logging:             "com.typesafe.scala-logging:scala-logging_2.11:$scala_logging_version",
+    logback:                   "ch.qos.logback:logback-classic:$logback_version",
+    spring_boot:               "org.springframework.boot:spring-boot:$spring_boot_version",
+    spring_boot_autoconfigure: "org.springframework.boot:spring-boot-autoconfigure:$spring_boot_version",
+    scomp:                     "org.fusesource.stomp:scomp:$scomp_version"
+    
+]
 
 dependencies {
-    compile "org.scala-lang:scala-library:2.11.4"
-    compile "org.fusesource.stomp:scomp:1.0.0"
-}
-
-task run(type: JavaExec, dependsOn: classes) {
-    main = "com.okode.stomp.server.Server"
-    classpath sourceSets.main.runtimeClasspath
+    compile deps.scala,
+        deps.scala_logging,
+        deps.logback,
+        deps.spring_boot,
+        deps.spring_boot_autoconfigure,
+        deps.scomp
 }
