@@ -5,3 +5,6 @@ Pods
 Podfile.lock
 build
 .gradle
+.classpath
+.project
+.settings
