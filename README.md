@@ -6,12 +6,21 @@ Simple iOS real time message consumer from Scala based Stomp broker.
 Requirements
 ------------
 
+* JDK 1.8
+* Xcode 6.1.1
+* Cocoapods
+
 Building
 --------
 
-Running
--------
+### iOS Client
 
-Developing
-----------
+    $ cd client
+    $ pod install
+    $ ./gradlew build
+
+### Stomp Server
+
+    $ cd server
+    $ ./gradlew build
 
