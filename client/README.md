@@ -24,25 +24,5 @@ Building
 Running
 -------
 
-    $ ios-sim launch build/sym/Release-iphonesimulator/StompClient.app --tall
-
-Hacking
--------
-
-StompClient depends on StompKit from the following repo:
-
-    https://github.com/mobile-web-messaging/StompKit
-
-but currently it's broken when parsing MESSAGE frames from Apache Apollo.
-There's a fixed version in the following repo:
-
-    https://github.com/dwsoto/StompKit
-
-When the fixed version were merged into master please update the Podfile replacing:
-
-    pod 'StompKit', :git => 'https://github.com/dwsoto/StompKit.git'
-
-to
-
-    pod 'StompKit', '~> 0.1.0'
+    $ ios-sim launch build/sym/Release-iphonesimulator/StompClient.app --devicetypeid "com.apple.CoreSimulator.SimDeviceType.iPhone-4s, 8.1"
 
