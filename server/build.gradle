@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE")
     }
 }
 
@@ -24,7 +24,7 @@ ext.scala_version         = "2.11.4"
 ext.scala_logging_version = "3.1.0"
 ext.logback_version       = "1.1.2"
 ext.spring_boot_version   = "1.2.0.RELEASE"
-ext.scomp_version         = "1.1.0"
+ext.scomp_version         = "1.0.0"
 
 ext.deps = [
     scala:                     "org.scala-lang:scala-library:$scala_version",
