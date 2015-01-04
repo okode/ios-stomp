@@ -19,24 +19,38 @@ package com.okode.stomp.server
 import org.fusesource.stomp.scomp.StompClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-
 import com.typesafe.scalalogging.Logger
-
 import javax.annotation.PostConstruct
+import org.springframework.beans.factory.annotation.Value
 
 @Component
 class Server {
 
   private val logger = Logger(LoggerFactory.getLogger(classOf[Server]))
   
+  @Value("${stomp.host}")
+  private val host: String = null
+  
+  @Value("${stomp.port}")
+  private val port: Int = 0
+  
+  @Value("${stomp.user}")
+  private val user: String = null
+  
+  @Value("${stomp.pass}")
+  private val pass: String = null
+  
+  @Value("${stomp.topic}")
+  private val topic: String = null
+  
   @PostConstruct
   def init() {
     val client = new StompClient
-    client.connect("localhost", 61613, "admin", "password")
+    client.connect(host, port, user, pass)
     0 to 100000 foreach((i:Int) => {
       val message = s"Hello: $i"
       logger.info(message)
-      client.send(destination = "/topic/demo", text = message)
+      client.send(destination = topic, text = message)
       Thread.sleep(10)
     })
     client.disconnect()
