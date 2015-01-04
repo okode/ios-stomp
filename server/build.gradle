@@ -1,0 +1,16 @@
+apply plugin: "scala"
+apply plugin: "eclipse"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.scala-lang:scala-library:2.11.4"
+    compile "org.fusesource.stomp:scomp:1.0.0"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = "com.okode.stomp.server.Server"
+    classpath sourceSets.main.runtimeClasspath
+}
